@@ -1,4 +1,4 @@
 (executable
- (public_name advent_of_ocaml)
- (name main)
- (libraries advent_of_ocaml))
+ (public_name day01)
+ (name day01)
+ (libraries advent stdio base))

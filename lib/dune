@@ -1,2 +1,3 @@
 (library
- (name advent_of_ocaml))
+ (name advent)
+ (libraries str))
