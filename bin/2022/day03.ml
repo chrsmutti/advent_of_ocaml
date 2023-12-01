@@ -1,7 +1,7 @@
 open Base
 open Stdio
 
-let input = Advent.read_lines "data/day03.txt"
+let input = Advent.read_lines "data/2022/day03.txt"
 
 let priority char =
   let a_lower = Char.to_int 'a' in

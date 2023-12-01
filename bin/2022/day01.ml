@@ -1,7 +1,7 @@
 open Base
 open Stdio
 
-let input = Advent.read_lines "data/day01.txt"
+let input = Advent.read_lines "data/2022/day01.txt"
 
 (* This solves both part1 and part2, as part1 just needs
    to grab the value of m1 *)

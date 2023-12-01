@@ -1,7 +1,7 @@
 open Base
 open Stdio
 
-let input = Advent.read_lines "data/day02.txt"
+let input = Advent.read_lines "data/2022/day02.txt"
 
 module Shape = struct
   type t = Rock | Paper | Scissors

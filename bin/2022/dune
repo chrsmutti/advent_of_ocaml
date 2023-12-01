@@ -1,4 +1,4 @@
 (executables
- (public_names day01 day02 day03 day04)
+ (public_names 2022-01 2022-02 2022-03 2022-04)
  (names day01 day02 day03 day04)
  (libraries advent stdio base))

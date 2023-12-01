@@ -1,7 +1,7 @@
 open Base
 open Stdio
 
-let input = Advent.read_lines "data/day04.txt"
+let input = Advent.read_lines "data/2022/day04.txt"
 
 let parse_elf elf =
   match String.split ~on:'-' elf with
