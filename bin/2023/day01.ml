@@ -2,76 +2,47 @@ open Base
 open Stdio
 
 let input = Advent.read_lines "data/2023/day01.txt"
+let numerals = [ "1"; "2"; "3"; "4"; "5"; "6"; "7"; "8"; "9" ]
 
 let spelled =
-  [
-    "one";
-    "two";
-    "three";
-    "four";
-    "five";
-    "six";
-    "seven";
-    "eight";
-    "nine";
-    "oneight";
-    "twone";
-    "threeight";
-    "fiveight";
-    "eightwo";
-    "eighthree";
-    "nineight";
-    "twoneight";
-  ]
+  [ "one"; "two"; "three"; "four"; "five"; "six"; "seven"; "eight"; "nine" ]
 
-let spelled_to_int number =
-  match number with
-  | "one" -> Some 1
-  | "two" -> Some 2
-  | "three" -> Some 3
-  | "four" -> Some 4
-  | "five" -> Some 5
-  | "six" -> Some 6
-  | "seven" -> Some 7
-  | "eight" -> Some 8
-  | "nine" -> Some 9
-  | "oneight" -> Some 18
-  | "twone" -> Some 21
-  | "threeight" -> Some 38
-  | "fiveight" -> Some 58
-  | "eightwo" -> Some 82
-  | "eighthree" -> Some 83
-  | "nineight" -> Some 98
-  | "twoneight" -> Some 218
-  | _ -> None
+let digit_to_int digit =
+  match digit with
+  | "one" -> 1
+  | "two" -> 2
+  | "three" -> 3
+  | "four" -> 4
+  | "five" -> 5
+  | "six" -> 6
+  | "seven" -> 7
+  | "eight" -> 8
+  | "nine" -> 9
+  | _ -> Int.of_string digit
 
-let replace_spelled line =
-  let aux spelled line =
-    let number = Stdlib.Option.get (spelled_to_int spelled) in
-    Str.global_replace (Str.regexp_string spelled) (Int.to_string number) line
-  in
-  List.fold (List.rev spelled) ~init:line ~f:(fun acc s -> aux s acc)
+let rec line_to_digits_rev line ~digits ~valid_digits =
+  match line with
+  | "" -> digits
+  | line ->
+      let digit =
+        List.find valid_digits ~f:(fun digit ->
+            String.is_substring_at line ~substring:digit ~pos:0)
+      in
+      let digit = Option.map digit ~f:digit_to_int in
+      line_to_digits_rev
+        (String.suffix line (String.length line - 1))
+        ~digits:(digit :: digits) ~valid_digits
 
-let rec extract_numbers numbers first last =
-  match numbers with
-  | [] -> (first, last)
-  | hd :: rest ->
-      let hdi = hd in
-      let first = if String.equal first "" then hdi else first in
-      let last = hdi in
-      extract_numbers rest first last
-
-let rec solve input spelled acc =
+let rec solve input valid_digits acc =
   match input with
   | [] -> acc
   | hd :: rest ->
-      let hd = if spelled then replace_spelled hd else hd in
-      let hd = Str.global_replace (Str.regexp "[A-Za-z]") "" hd in
-      let numbers = Str.split (Str.regexp "") hd in
-      let first, last = extract_numbers numbers "" "" in
-      let acc = acc + Int.of_string (String.concat (first :: [ last ])) in
-      solve rest spelled acc
+      let digits = List.rev (line_to_digits_rev hd ~digits:[] ~valid_digits) in
+      let digits = List.filter_map digits ~f:(fun x -> x) in
+      let first = List.hd digits |> Option.value ~default:0 |> Int.( * ) 10 in
+      let last = List.rev digits |> List.hd |> Option.value ~default:0 in
+      solve rest valid_digits acc + (first + last)
 
 let () =
-  printf "%d\n" (solve input false 0);
-  printf "%d\n" (solve input true 0)
+  printf "%d\n" (solve input numerals 0);
+  printf "%d\n" (solve input (List.concat [ numerals; spelled ]) 0)
