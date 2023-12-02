@@ -1,0 +1,4 @@
+(executables
+ (public_names 2023-01)
+ (names day01)
+ (libraries advent stdio base))

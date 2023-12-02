@@ -5,22 +5,20 @@
 (generate_opam_files true)
 
 (source
- (github username/reponame))
+ (github chrsmutti/advent_of_code))
 
-(authors "Author Name")
+(authors "Christian Mutti")
 
-(maintainers "Maintainer Name")
-
-(license LICENSE)
-
-(documentation https://url/to/documentation)
+(license MIT)
 
 (package
  (name advent_of_ocaml)
- (synopsis "A short synopsis")
- (description "A longer description")
+ (synopsis "Advent of OCaml - Solutions to Advent of Code puzzles in OCaml")
+ (description
+  "Advent of OCaml is a collection of personal solutions to the Advent of Code
+  puzzles implemented in the OCaml programming language.")
  (depends ocaml dune)
  (tags
-  (topics "to describe" your project)))
+  (topics "Advent of Code" "OCaml programming" "Algorithmic problem-solving")))
 
-; See the complete stanza docs at https://dune.readthedocs.io/en/stable/dune-files.html#dune-project
+; See the complete stanza docs at https://dune.readthedocs.io/en/stable/dune-files.html#dune
