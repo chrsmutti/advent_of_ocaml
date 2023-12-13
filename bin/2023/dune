@@ -1,6 +1,6 @@
 (executables
- (public_names 2023-01 2023-02 2023-03 2023-04 2023-06 2023-07 2023-08)
- (names day01 day02 day03 day04 day06 day07 day08)
+ (public_names 2023-01 2023-02 2023-03 2023-04 2023-06 2023-07 2023-08 2023-09)
+ (names day01 day02 day03 day04 day06 day07 day08 day09)
  (libraries advent stdio base ppx_jane)
  (preprocess
   (pps ppx_jane)))
