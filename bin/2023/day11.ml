@@ -5,8 +5,6 @@ let input = Advent.read_lines "data/2023/day11.txt"
 
 module Position = struct
   type t = { x : int; y : int } [@@deriving equal]
-
-  let sum a b = { x = a.x + b.x; y = a.y + b.y }
 end
 
 let shortest_path a b =

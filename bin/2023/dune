@@ -8,8 +8,9 @@
   2023-07
   2023-08
   2023-09
-  2023-11)
- (names day01 day02 day03 day04 day06 day07 day08 day09 day11)
+  2023-11
+  2023-12)
+ (names day01 day02 day03 day04 day06 day07 day08 day09 day11 day12)
  (libraries advent stdio base ppx_jane ocolor)
  (preprocess
   (pps ppx_jane)))
